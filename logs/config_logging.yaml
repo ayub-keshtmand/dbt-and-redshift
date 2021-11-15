@@ -1,0 +1,26 @@
+version: 1
+
+formatters:
+    standard:
+        format: "%(asctime)s | %(name)s | %(levelname)s | %(lineno)d | %(message)s"
+        datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+    info_handler:
+        class: logging.handlers.TimedRotatingFileHandler
+        level: INFO
+        formatter: standard
+        filename: logs/log
+        encoding: utf8
+        when: H
+        interval: 1
+
+loggers:
+    dbt-and-redshift:
+        level: INFO
+        handlers: [info_handler]
+        propagate: no
+
+root:
+    level: INFO
+    handlers: [info_handler]
